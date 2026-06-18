@@ -39,7 +39,7 @@ interface Profile {
 interface AccountSummary {
   id: string;
   name: string;
-  /** Default deal currency (ISO-4217). NOT NULL DEFAULT 'USD' in the
+  /** Default deal currency (ISO-4217). NOT NULL DEFAULT 'INR' in the
    *  DB (migration 021); narrowed to DEFAULT_CURRENCY when absent. */
   default_currency: string;
 }
@@ -165,7 +165,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             } | null);
         // Narrow default_currency defensively: forks running pre-021
         // schemas won't have the column, so a missing/null value reads
-        // as the safe USD fallback rather than crashing the picker.
+        // as the safe INR fallback rather than crashing the picker.
         const accountRow: AccountSummary | null = accountRaw
           ? {
               id: accountRaw.id,
